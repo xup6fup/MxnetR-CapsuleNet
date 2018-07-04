@@ -6,3 +6,6 @@ If you want to get the original Capsule Net reporting in paper, please revise th
 
 This simplified Capsule Net only includes 338,368 parameters and achieve 98.75% accuracy in testing set.
 
+The top images are real digit images, and the bottom images are imagined pictures by Capsule Net.
+
+<img src="Example.jpeg" width="1000" height="400" alt="F1"/>
