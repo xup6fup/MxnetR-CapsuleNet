@@ -15,7 +15,7 @@ my_iterator_func <- setRefClass("Custom_Iter",
                                     val.y <- t(model.matrix(~ -1 + factor(val[1,], levels = 0:9)))
                                     val.y <- array(val.y, dim = c(10, ncol(val.x)))
                                     dim(val.x) <- c(28, 28, 1, ncol(val.x))
-                                    val.x <- mx.nd.array(val.x)
+                                    val.x <- mx.nd.array(val.x/255)
                                     val.y <- mx.nd.array(val.y)
                                     list(data=val.x, label=val.y)
                                   },
