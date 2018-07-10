@@ -1,12 +1,11 @@
 library(mxnet)
 library(imager)
 
-digit <- 9
+digit <- 6
 
 Capsnet_model <- mx.model.load('CapsNet', 0)
 
-#vec <- c(1.6, -1.6, 1.6, 1.6, -1.6, -1.6, -1.6, -1.6, -1.6, -1.6, 1.6, 1.6, 1.6, 1.6, 1.6, 1.6)
-vec <- rnorm(16, sd = 3)
+vec <- runif(16, -3, 3)
 
 fc1_out <- vec %*% as.array(Capsnet_model$arg.params[[paste0('deconv1_', digit + 1, '_weight')]])[1,,,] + as.array(Capsnet_model$arg.params[[paste0('deconv1_', digit + 1, '_bias')]])
 relu1_out <- fc1_out
@@ -16,7 +15,7 @@ fc2_out <- fc1_out %*% t(as.array(Capsnet_model$arg.params[[paste0('deconv2_', d
 relu2_out <- fc2_out
 relu2_out[relu2_out < 0] <- 0
 
-for (k in 1:128) {
+for (k in 1:256) {
   if (k == 1) {
     img_out <- relu2_out[,k] * as.array(Capsnet_model$arg.params[[paste0('fig_list_', digit + 1, '_weight')]])[,,,k]
   } else {
