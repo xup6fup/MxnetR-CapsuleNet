@@ -7,4 +7,4 @@ The MNIST dataset was converted to two csv data in the "data" folder. The first 
 
 Following figure is a visualization example for understanding Capsule Net, and it can be repeated by [7. Predict and Reconstruction.R](https://github.com/xup6fup/MxnetR-CapsuleNet/blob/master/code/7.%20Predict%20and%20Reconstruction.R). The top images are real digit images, and the bottom images are imagined pictures by Capsule Net.
 
-<img src="Example.jpeg" width="1000" height="800" alt="F1"/>
+<img src="example.jpeg" width="1000" height="800" alt="F1"/>
