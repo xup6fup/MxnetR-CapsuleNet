@@ -63,17 +63,17 @@ my.model.FeedForward.create = function (Iterator, ctx = mx.cpu(), save.grad = FA
       }
       batch_seq = batch_seq + 1
       
-      if (batch_seq %% 200 == 0) {
-        message(paste0("[", batch_seq,
-                       "] loss = ", formatC(mean(unlist(batch_loss)), format = "f", 4),
-                       " (Speed: ", formatC(batch_seq * batch_size/as.numeric(Sys.time() - t0, units = 'secs'), format = "f", 2), " sample/secs)"))
-      }
+      #if (batch_seq %% 200 == 0) {
+      #  message(paste0("[", batch_seq,
+      #                 "] loss = ", formatC(mean(unlist(batch_loss)), format = "f", 4),
+      #                 " (Speed: ", formatC(batch_seq * batch_size/as.numeric(Sys.time() - t0, units = 'secs'), format = "f", 2), " samples/sec)"))
+      #}
       
     }
     
     message(paste0("epoch = ", i,
                    ": loss = ", formatC(mean(unlist(batch_loss)), format = "f", 4),
-                   " (Speed: ", formatC(batch_seq * batch_size/as.numeric(Sys.time() - t0, units = 'secs'), format = "f", 2), " sample/secs)"))
+                   " (Speed: ", formatC(batch_seq * batch_size/as.numeric(Sys.time() - t0, units = 'secs'), format = "f", 2), " samples/sec)"))
     
     if (save.grad) {epoch_grad = rbind(epoch_grad, apply(abind(batch_grad, along = 2), 1, mean))}
     

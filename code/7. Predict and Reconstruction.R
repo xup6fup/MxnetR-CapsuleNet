@@ -47,11 +47,11 @@ dim(Test.X) = c(28, 28, 1, ncol(Test.X))
 Test.Y = DAT[,1]
 
 
-par(mar=rep(0,4), mfcol = c(2, 5))
+par(mar=rep(0,4), mfcol = c(4, 5))
 
-for (i in 1:5) {
+for (i in 1:10) {
   
-  pos <- sample(1:length(Test.Y), 1)
+  pos <- sample(which(Test.Y == i - 1), 1)
   
   Input <- Test.X[,,,pos]
   dim(Input) <- c(28, 28, 1, 1)

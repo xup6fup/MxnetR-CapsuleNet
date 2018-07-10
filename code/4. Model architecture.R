@@ -78,7 +78,7 @@ Digit_caps <- function (indata, kernel, strides, num_filter, num_output, name = 
   
 }
 
-CapsNet <- function (indata, num_filter1 = 64, dim_vector = 8, n_channels = 8, num_filter2 = 16, num_output = 10) {
+CapsNet <- function (indata, num_filter1 = 128, dim_vector = 8, n_channels = 16, num_filter2 = 16, num_output = 10) {
   
   # first conv
   
@@ -119,13 +119,13 @@ fig_list <- list()
 for (i in 1:10) {
   
   deconv1 <- mx.symbol.Convolution(data = final_agree_list[[i]],
-                                   kernel = c(1, 16), num_filter = 64, stride = c(1, 1),
+                                   kernel = c(1, 16), num_filter = 128, stride = c(1, 1),
                                    name = paste0('deconv1_', i))
   
   derelu1 <- mx.symbol.Activation(data = deconv1, act_type = "relu", name = paste0('derelu1_', i))
   
   deconv2 <- mx.symbol.Deconvolution(data = derelu1, 
-                                     kernel = c(1, 1), num_filter = 128, stride = c(1, 1),
+                                     kernel = c(1, 1), num_filter = 256, stride = c(1, 1),
                                      name = paste0('deconv2_', i))
   
   derelu2 <- mx.symbol.Activation(data = deconv2, act_type = "relu", name = paste0('derelu2_', i))

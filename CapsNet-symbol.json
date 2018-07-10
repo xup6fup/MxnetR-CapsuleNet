@@ -8,42 +8,42 @@
     {
       "op": "null", 
       "name": "conv1_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(9, 9)", 
-        "num_filter": "64"
+        "num_filter": "128"
       }, 
       "inputs": []
     }, 
     {
       "op": "null", 
       "name": "conv1_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(9, 9)", 
-        "num_filter": "64"
+        "num_filter": "128"
       }, 
       "inputs": []
     }, 
     {
       "op": "Convolution", 
       "name": "conv1", 
-      "attr": {
+      "attrs": {
         "kernel": "(9, 9)", 
-        "num_filter": "64"
+        "num_filter": "128"
       }, 
       "inputs": [[0, 0, 0], [1, 0, 0], [2, 0, 0]]
     }, 
     {
       "op": "Activation", 
       "name": "relu1", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[3, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "conv_P_caps_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(9, 9)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(2, 2)"
       }, 
       "inputs": []
@@ -51,9 +51,9 @@
     {
       "op": "null", 
       "name": "conv_P_caps_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(9, 9)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(2, 2)"
       }, 
       "inputs": []
@@ -61,9 +61,9 @@
     {
       "op": "Convolution", 
       "name": "conv_P_caps", 
-      "attr": {
+      "attrs": {
         "kernel": "(9, 9)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(2, 2)"
       }, 
       "inputs": [[4, 0, 0], [5, 0, 0], [6, 0, 0]]
@@ -71,7 +71,7 @@
     {
       "op": "Reshape", 
       "name": "reshape_P_caps", 
-      "attr": {"shape": "(0, 1, 8, -1)"}, 
+      "attrs": {"shape": "(0, 1, 8, -1)"}, 
       "inputs": [[7, 0, 0]]
     }, 
     {
@@ -82,7 +82,7 @@
     {
       "op": "sum", 
       "name": "sum_square_P_caps", 
-      "attr": {
+      "attrs": {
         "axis": "3", 
         "keepdims": "1"
       }, 
@@ -91,11 +91,11 @@
     {
       "op": "_plus_scalar", 
       "name": "_plusscalar0", 
-      "attr": {"scalar": "1"}, 
+      "attrs": {"scalar": "1"}, 
       "inputs": [[10, 0, 0]]
     }, 
     {
-      "op": "_div", 
+      "op": "elemwise_div", 
       "name": "_div0", 
       "inputs": [[10, 0, 0], [11, 0, 0]]
     }, 
@@ -105,7 +105,7 @@
       "inputs": [[10, 0, 0]]
     }, 
     {
-      "op": "_div", 
+      "op": "elemwise_div", 
       "name": "_div1", 
       "inputs": [[12, 0, 0], [13, 0, 0]]
     }, 
@@ -117,7 +117,7 @@
     {
       "op": "null", 
       "name": "conv_D_caps_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(8, 1)", 
         "no_bias": "1", 
         "num_filter": "160", 
@@ -128,7 +128,7 @@
     {
       "op": "Convolution", 
       "name": "conv_D_caps", 
-      "attr": {
+      "attrs": {
         "kernel": "(8, 1)", 
         "no_bias": "1", 
         "num_filter": "160", 
@@ -139,13 +139,13 @@
     {
       "op": "Reshape", 
       "name": "reshape_D_caps", 
-      "attr": {"shape": "(0, 10, 16, -1)"}, 
+      "attrs": {"shape": "(0, 10, 16, -1)"}, 
       "inputs": [[17, 0, 0]]
     }, 
     {
       "op": "mean", 
       "name": "mean1_D_caps", 
-      "attr": {
+      "attrs": {
         "axis": "3", 
         "keepdims": "1"
       }, 
@@ -164,7 +164,7 @@
     {
       "op": "_plus_scalar", 
       "name": "_plusscalar1", 
-      "attr": {"scalar": "0.001"}, 
+      "attrs": {"scalar": "0.001"}, 
       "inputs": [[21, 0, 0]]
     }, 
     {
@@ -180,7 +180,7 @@
     {
       "op": "mean", 
       "name": "agree_D_caps", 
-      "attr": {
+      "attrs": {
         "axis": "3", 
         "keepdims": "1"
       }, 
@@ -194,19 +194,19 @@
     {
       "op": "sum", 
       "name": "sum_D_caps", 
-      "attr": {"axis": "(3, 2)"}, 
+      "attrs": {"axis": "(3, 2)"}, 
       "inputs": [[26, 0, 0]]
     }, 
     {
       "op": "softmax", 
       "name": "softmax", 
-      "attr": {"axis": "1"}, 
+      "attrs": {"axis": "1"}, 
       "inputs": [[27, 0, 0]]
     }, 
     {
       "op": "_plus_scalar", 
       "name": "_plusscalar2", 
-      "attr": {"scalar": "1e-008"}, 
+      "attrs": {"scalar": "1e-08"}, 
       "inputs": [[28, 0, 0]]
     }, 
     {
@@ -232,13 +232,13 @@
     {
       "op": "_rminus_scalar", 
       "name": "_rminus_scalar0", 
-      "attr": {"scalar": "0"}, 
+      "attrs": {"scalar": "0"}, 
       "inputs": [[33, 0, 0]]
     }, 
     {
       "op": "SliceChannel", 
       "name": "final_agree_list", 
-      "attr": {
+      "attrs": {
         "axis": "1", 
         "num_outputs": "10", 
         "squeeze_axis": "0"
@@ -248,9 +248,9 @@
     {
       "op": "null", 
       "name": "deconv1_1_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -258,9 +258,9 @@
     {
       "op": "null", 
       "name": "deconv1_1_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -268,9 +268,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_1", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 0, 0], [36, 0, 0], [37, 0, 0]]
@@ -278,15 +278,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_1", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[38, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_1_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -294,9 +294,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_1", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[39, 0, 0], [40, 0, 0]]
@@ -304,13 +304,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_1", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[41, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_1_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -320,7 +320,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_1", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -330,9 +330,9 @@
     {
       "op": "null", 
       "name": "deconv1_2_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -340,9 +340,9 @@
     {
       "op": "null", 
       "name": "deconv1_2_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -350,9 +350,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_2", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 1, 0], [45, 0, 0], [46, 0, 0]]
@@ -360,15 +360,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_2", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[47, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_2_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -376,9 +376,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_2", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[48, 0, 0], [49, 0, 0]]
@@ -386,13 +386,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_2", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[50, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_2_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -402,7 +402,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_2", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -412,9 +412,9 @@
     {
       "op": "null", 
       "name": "deconv1_3_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -422,9 +422,9 @@
     {
       "op": "null", 
       "name": "deconv1_3_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -432,9 +432,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_3", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 2, 0], [54, 0, 0], [55, 0, 0]]
@@ -442,15 +442,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_3", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[56, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_3_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -458,9 +458,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_3", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[57, 0, 0], [58, 0, 0]]
@@ -468,13 +468,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_3", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[59, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_3_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -484,7 +484,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_3", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -494,9 +494,9 @@
     {
       "op": "null", 
       "name": "deconv1_4_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -504,9 +504,9 @@
     {
       "op": "null", 
       "name": "deconv1_4_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -514,9 +514,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_4", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 3, 0], [63, 0, 0], [64, 0, 0]]
@@ -524,15 +524,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_4", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[65, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_4_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -540,9 +540,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_4", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[66, 0, 0], [67, 0, 0]]
@@ -550,13 +550,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_4", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[68, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_4_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -566,7 +566,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_4", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -576,9 +576,9 @@
     {
       "op": "null", 
       "name": "deconv1_5_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -586,9 +586,9 @@
     {
       "op": "null", 
       "name": "deconv1_5_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -596,9 +596,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_5", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 4, 0], [72, 0, 0], [73, 0, 0]]
@@ -606,15 +606,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_5", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[74, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_5_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -622,9 +622,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_5", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[75, 0, 0], [76, 0, 0]]
@@ -632,13 +632,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_5", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[77, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_5_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -648,7 +648,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_5", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -658,9 +658,9 @@
     {
       "op": "null", 
       "name": "deconv1_6_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -668,9 +668,9 @@
     {
       "op": "null", 
       "name": "deconv1_6_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -678,9 +678,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_6", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 5, 0], [81, 0, 0], [82, 0, 0]]
@@ -688,15 +688,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_6", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[83, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_6_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -704,9 +704,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_6", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[84, 0, 0], [85, 0, 0]]
@@ -714,13 +714,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_6", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[86, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_6_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -730,7 +730,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_6", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -740,9 +740,9 @@
     {
       "op": "null", 
       "name": "deconv1_7_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -750,9 +750,9 @@
     {
       "op": "null", 
       "name": "deconv1_7_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -760,9 +760,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_7", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 6, 0], [90, 0, 0], [91, 0, 0]]
@@ -770,15 +770,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_7", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[92, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_7_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -786,9 +786,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_7", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[93, 0, 0], [94, 0, 0]]
@@ -796,13 +796,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_7", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[95, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_7_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -812,7 +812,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_7", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -822,9 +822,9 @@
     {
       "op": "null", 
       "name": "deconv1_8_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -832,9 +832,9 @@
     {
       "op": "null", 
       "name": "deconv1_8_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -842,9 +842,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_8", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 7, 0], [99, 0, 0], [100, 0, 0]]
@@ -852,15 +852,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_8", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[101, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_8_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -868,9 +868,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_8", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[102, 0, 0], [103, 0, 0]]
@@ -878,13 +878,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_8", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[104, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_8_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -894,7 +894,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_8", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -904,9 +904,9 @@
     {
       "op": "null", 
       "name": "deconv1_9_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -914,9 +914,9 @@
     {
       "op": "null", 
       "name": "deconv1_9_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -924,9 +924,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_9", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 8, 0], [108, 0, 0], [109, 0, 0]]
@@ -934,15 +934,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_9", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[110, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_9_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -950,9 +950,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_9", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[111, 0, 0], [112, 0, 0]]
@@ -960,13 +960,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_9", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[113, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_9_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -976,7 +976,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_9", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -986,9 +986,9 @@
     {
       "op": "null", 
       "name": "deconv1_10_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -996,9 +996,9 @@
     {
       "op": "null", 
       "name": "deconv1_10_bias", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -1006,9 +1006,9 @@
     {
       "op": "Convolution", 
       "name": "deconv1_10", 
-      "attr": {
+      "attrs": {
         "kernel": "(16, 1)", 
-        "num_filter": "64", 
+        "num_filter": "128", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[35, 9, 0], [117, 0, 0], [118, 0, 0]]
@@ -1016,15 +1016,15 @@
     {
       "op": "Activation", 
       "name": "derelu1_10", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[119, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "deconv2_10_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": []
@@ -1032,9 +1032,9 @@
     {
       "op": "Deconvolution", 
       "name": "deconv2_10", 
-      "attr": {
+      "attrs": {
         "kernel": "(1, 1)", 
-        "num_filter": "128", 
+        "num_filter": "256", 
         "stride": "(1, 1)"
       }, 
       "inputs": [[120, 0, 0], [121, 0, 0]]
@@ -1042,13 +1042,13 @@
     {
       "op": "Activation", 
       "name": "derelu2_10", 
-      "attr": {"act_type": "relu"}, 
+      "attrs": {"act_type": "relu"}, 
       "inputs": [[122, 0, 0]]
     }, 
     {
       "op": "null", 
       "name": "fig_list_10_weight", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -1058,7 +1058,7 @@
     {
       "op": "Deconvolution", 
       "name": "fig_list_10", 
-      "attr": {
+      "attrs": {
         "kernel": "(28, 28)", 
         "num_filter": "1", 
         "stride": "(1, 1)"
@@ -1068,7 +1068,7 @@
     {
       "op": "Concat", 
       "name": "final_fig", 
-      "attr": {
+      "attrs": {
         "dim": "1", 
         "num_args": "10"
       }, 
@@ -1077,7 +1077,7 @@
     {
       "op": "Reshape", 
       "name": "reshape_agree", 
-      "attr": {"shape": "(0, 10, 1, 1)"}, 
+      "attrs": {"shape": "(0, 10, 1, 1)"}, 
       "inputs": [[31, 0, 0]]
     }, 
     {
@@ -1088,14 +1088,14 @@
     {
       "op": "sum", 
       "name": "sum0", 
-      "attr": {
+      "attrs": {
         "axis": "1", 
         "keepdims": "1"
       }, 
       "inputs": [[128, 0, 0]]
     }, 
     {
-      "op": "_sub", 
+      "op": "elemwise_sub", 
       "name": "_minus0", 
       "inputs": [[129, 0, 0], [0, 0, 0]]
     }, 
@@ -1112,7 +1112,7 @@
     {
       "op": "_mul_scalar", 
       "name": "_mulscalar0", 
-      "attr": {"scalar": "0.0005"}, 
+      "attrs": {"scalar": "0.0005"}, 
       "inputs": [[132, 0, 0]]
     }, 
     {
@@ -1315,5 +1315,5 @@
     145
   ], 
   "heads": [[135, 0, 0]], 
-  "attrs": {"mxnet_version": ["int", 1001]}
+  "attrs": {"mxnet_version": ["int", 10200]}
 }
